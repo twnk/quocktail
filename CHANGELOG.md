@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3](https://github.com/twnk/quocktail/compare/v0.1.2...v0.1.3) - 2024-02-18
+
+### Fixed
+- try again?
+
+### Other
+- Merge branch 'main' of github.com:twnk/quocktail
+
 ## [0.1.2](https://github.com/twnk/quocktail/compare/v0.1.1...v0.1.2) - 2024-02-18
 
 ### Fixed
