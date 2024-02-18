@@ -42,3 +42,5 @@ targets = ["aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-unknown-linux-
 publish-jobs = ["homebrew"]
 # Publish jobs to run in CI
 pr-run-mode = "plan"
+# release is already made by release-plz 
+create-release = false 
