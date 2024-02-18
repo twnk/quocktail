@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1](https://github.com/twnk/quocktail/compare/v0.1.0...v0.1.1) - 2024-02-18
+
+### Added
+- brew releases? pt 2
+- brew releases?
+
 ## [0.1.0](https://github.com/twnk/quocktail/releases/tag/v0.1.0) - 2024-02-18
 
 ### Added
