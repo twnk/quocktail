@@ -1,0 +1,13 @@
+```
+Usage: quocktail [OPTIONS] <PATH>
+
+Arguments:
+  <PATH>
+
+Options:
+      --color <COLOR>      Should the output be colored? [default: auto] [possible values: always, auto, never]
+  -q, --query <QUERY>      Queries in the form `key=value`, or just `key` e.g. `-Q garnish` matches anything with a garnish e.g. `-Q base=vodka` matches anything with a vodka base
+  -n, --exclude <EXCLUDE>  Negative queries in the form `key=value`, or just `key` e.g. `-N garnish` excludes anything with a garnish e.g. `-N base=vodka` excludes anything with a vodka base
+  -c, --count <COUNT>      If specified, limit the output to this number of recipes, randomly chosen
+  -h, --help               Print help
+```

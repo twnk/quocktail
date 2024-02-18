@@ -2,6 +2,9 @@
 name = "quocktail"
 version = "0.1.0"
 edition = "2021"
+description = "Rust CLI for searching through nested directories of markdown files with frontmatter, filtering and displaying the results"
+license = "GPL-3.0-or-later"
+authors = ["Angel"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
