@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2](https://github.com/twnk/quocktail/compare/v0.1.1...v0.1.2) - 2024-02-18
+
+### Fixed
+- if you don't use GITHUB_TOKEN actions can trigger other actions
+- cargo dist doesn't like that
+- action doesn't trigger because it was caused by another action (to prevent loops), so being more specific
+
+### Other
+- Merge branch 'main' of github.com:twnk/quocktail
+
 ## [0.1.1](https://github.com/twnk/quocktail/compare/v0.1.0...v0.1.1) - 2024-02-18
 
 ### Added
