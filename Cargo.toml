@@ -5,6 +5,7 @@ edition = "2021"
 description = "Rust CLI for searching through nested directories of markdown files with frontmatter, filtering and displaying the results"
 license = "GPL-3.0-or-later"
 authors = ["Angel"]
+repository = "https://github.com/twnk/quocktail"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -19,3 +20,25 @@ owo-colors = { version = "4.0.0", features = ["supports-colors"] }
 rand = { version = "0.8.5", features = ["alloc"] }
 supports-color = "3.0.0"
 walkdir = "2.4.0"
+
+# The profile that 'cargo dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
+
+# Config for 'cargo dist'
+[workspace.metadata.dist]
+# The preferred cargo-dist version to use in CI (Cargo.toml SemVer syntax)
+cargo-dist-version = "0.10.0"
+# CI backends to support
+ci = ["github"]
+# The installers to generate for each app
+installers = ["shell", "homebrew"]
+# A GitHub repo to push Homebrew formulas to
+tap = "twnk/homebrew-twnk"
+# Target platforms to build apps for (Rust target-triple syntax)
+targets = ["aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-unknown-linux-gnu", "x86_64-unknown-linux-musl"]
+# Publish jobs to run in CI
+publish-jobs = ["homebrew"]
+# Publish jobs to run in CI
+pr-run-mode = "plan"
