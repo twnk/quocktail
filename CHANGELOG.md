@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6](https://github.com/twnk/quocktail/compare/v0.1.5...v0.1.6) - 2024-03-17
+
+### Added
+- rewrite parser entirely, handle or
+
+### Fixed
+- formatting
+
+### Other
+- Merge pull request [#7](https://github.com/twnk/quocktail/pull/7) from twnk/feat/nested-ingredients
+
 ## [0.1.5](https://github.com/twnk/quocktail/compare/v0.1.4...v0.1.5) - 2024-02-18
 
 ### Fixed
