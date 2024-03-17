@@ -5,6 +5,7 @@
 mod color;
 mod command;
 mod output;
+mod parse;
 
 // ... other modules
 
