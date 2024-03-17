@@ -222,6 +222,7 @@ impl Recipe {
 
         for event in iterator {
             match event {
+                Event::End(e) if matches!(e, TagEnd::Paragraph) =>  instructions.push('\n'),
                 Event::Text(s) => instructions.push_str(&s),
                 Event::SoftBreak => instructions.push('\n'),
                 Event::HardBreak => instructions.push_str("\n\n"),

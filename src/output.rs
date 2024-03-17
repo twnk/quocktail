@@ -39,7 +39,7 @@ impl<'a> fmt::Display for RecipeDisplay<'a> {
         for (k, v) in self.recipe.ingredients().hash.iter() {
             let k = k.as_str().unwrap_or("");
             match v {
-                Yaml::Real(s) => todo!(""),
+                Yaml::Real(_) => todo!(""),
                 Yaml::Integer(_) => todo!(),
                 Yaml::String(v) => writeln!(
                     f,
