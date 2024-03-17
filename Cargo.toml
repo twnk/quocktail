@@ -15,11 +15,13 @@ clap = { version = "4.5.1", features = ["derive", "unicode"] }
 color-eyre = "0.6.2"
 convert_case = "0.6.0"
 enable-ansi-support = "0.2.1"
-gray_matter = "0.2.6"
+lazy_static = "1.4.0"
 owo-colors = { version = "4.0.0", features = ["supports-colors"] }
+pulldown-cmark = { version = "0.10.0", default-features = false, features = ["getopts", "simd"]}
 rand = { version = "0.8.5", features = ["alloc"] }
 supports-color = "3.0.0"
 walkdir = "2.4.0"
+yaml-rust = "0.4.5"
 
 # The profile that 'cargo dist' will build with
 [profile.dist]

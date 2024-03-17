@@ -1,24 +1,13 @@
-use gray_matter::Pod;
 use owo_colors::OwoColorize;
-use std::{collections::HashMap, fmt};
+use yaml_rust::Yaml;
+use std::fmt;
 
 use crate::color::Styles;
-
-#[derive(Debug)]
-pub struct Recipe {
-    /// by convention, Title Case name
-    name: String,
-    pub pods: HashMap<String, Pod>,
-    body: String,
-}
+use crate::parse::{Recipe, YAML_OR_KEY};
 
 impl Recipe {
-    pub fn new(name: String, pods: HashMap<String, Pod>, body: String) -> Self {
-        Self { name, pods, body }
-    }
-
     /// Returns a type that can display `MyValue`.
-    pub fn display(&self) -> RecipeDisplay<'_> {
+    pub fn display(&self) -> RecipeDisplay {
         RecipeDisplay {
             recipe: self,
             styles: Box::default(),
@@ -44,30 +33,68 @@ impl<'a> fmt::Display for RecipeDisplay<'a> {
         write!(
             f,
             "Recipe {}\n\n",
-            self.recipe.name.style(self.styles.title_style),
+            self.recipe.name().style(self.styles.title_style),
         )?;
 
-        for (k, p) in self.recipe.pods.iter() {
-            if let Ok(v) = p.as_string() {
-                writeln!(
+        for (k, v) in self.recipe.ingredients().hash.iter() {
+            let k = k.as_str().unwrap_or("");
+            match v {
+                Yaml::Real(s) => todo!(""),
+                Yaml::Integer(_) => todo!(),
+                Yaml::String(v) => writeln!(
                     f,
                     "{}: {}",
                     k.style(self.styles.key_style),
                     v.style(self.styles.value_style)
-                )?;
-            } else {
-                // if p.is_empty() {
-                writeln!(f, "No {}", k.style(self.styles.key_style))?;
-            } // else {
-              //     write!(
-              //         f,
-              //         "Error displaying value of {}. Couldn't figure out {:?}\n",
-              //         k.style(self.styles.key_style),
-              //         p
-              //     )?;
-              // }
+                )?,
+                Yaml::Boolean(_) => todo!(),
+                Yaml::Array(arr) => {
+                    writeln!(
+                        f,
+                        "{}:",
+                        k.style(self.styles.key_style),
+                    )?;
+                    for v in arr {
+                        writeln!(
+                            f,
+                            "  - {}",
+                            v.as_str().unwrap_or_default().style(self.styles.value_style),
+                        )?;
+                    }
+                },
+                Yaml::Hash(hash) => {
+                    if let Some(Yaml::Array(or_arr)) = hash.get(&YAML_OR_KEY) {
+                        writeln!(
+                            f,
+                            "{} (choice of):",
+                            k.style(self.styles.key_style),
+                        )?;
+                        for v in or_arr {
+                            writeln!(
+                                f,
+                                "  - {}",
+                                v.as_str().unwrap_or_default().style(self.styles.value_style),
+                            )?;
+                        }
+                    } else {
+                        writeln!(
+                            f,
+                            "unexpected format {}: {:?}",
+                            k.style(self.styles.key_style),
+                            v
+                        )?;
+                    }
+                },
+                Yaml::Alias(_) => todo!(),
+                Yaml::Null => {},
+                Yaml::BadValue => todo!(),
+            };
         }
 
-        write!(f, "{}\n\n", self.recipe.body.style(self.styles.body_style),)
+        write!(
+            f,
+            "{}\n\n",
+            self.recipe.instructions().style(self.styles.body_style),
+        )
     }
 }
